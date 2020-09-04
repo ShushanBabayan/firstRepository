@@ -11,11 +11,11 @@ import java.sql.Statement;
 public class Registration {
     final String name = "shushan";
     final String password = "123456";
-    final String url = "jdbc:sqlserver://localhost:1433/LOGIN_REGISTOR";
+    final String url = "jdbc:sqlserver://localhost:1433;database=LOGIN_REGISTOR";
 
-    public void Connect(RegistrationDao registrationDao) {
-        //insert into LOGIN_REGISTOR values('Maga' , "Geghamyan" , "gegmargarita@gmail.com", "aaaa");
-        String sql = "insert into LOGIN_REGISTOR values('" + registrationDao.getName() + ',' + registrationDao.getLastName() + "','" + registrationDao.getEmail() + "','" + registrationDao.getPassword();
+    public void Connect(RegistrationDao registrationDao) {        
+        String sql = "insert into Login_Registor values('" + registrationDao.getName() + "','" + registrationDao.getLastName()
+                + "','" + registrationDao.getEmail() + "','" + registrationDao.getPassword() + "')";
         Connection connection = null;
         try{
             DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());

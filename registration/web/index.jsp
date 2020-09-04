@@ -15,7 +15,7 @@
       Name <input type="text" name="name">
       LastName <input type="text" name="lastName">
       Email <input type="text" name="email">
-      Password <input type="text" name='password'>
+      Password <input type="password" name='password'>
       <button type="submit"> Submit </button>
 
     </form>

@@ -1,8 +1,8 @@
 package com.company;
 
-public class QueueImpl implements Queue {
+public class QueueImpl<E> implements Queue<E> {
 
-    private  int array[];
+    private  Object array[];
     private int capacity;
     private int size;
 
@@ -10,10 +10,10 @@ public class QueueImpl implements Queue {
     {
         size = 0;
         this.capacity = capacity;
-        array = new int[capacity];
+        array = new Object[capacity];
     }
     @Override
-    public boolean add(int e) throws QueueIsFullException{
+    public boolean add(E e) throws QueueIsFullException{
         if(size == capacity){
             throw new QueueIsFullException("Queue is full");
         }
@@ -23,12 +23,21 @@ public class QueueImpl implements Queue {
     }
 
     @Override
-    public int poll() {
+    public boolean offer(E e) {
+        if(size == capacity){
+            return false;
+        }
+        array[size] = e;
+        return true;
+    }
+
+    @Override
+    public E poll() {
         if(size == 0){
             System.out.println("Queue is empty");
-            return 0;
+            return null;
         }
-        int top = array[0];
+        E top = (E)array[0];
         for (int i = 0; i < size; ++i) {
             array[i] = array[i + 1];
         }
@@ -37,13 +46,13 @@ public class QueueImpl implements Queue {
     }
 
     @Override
-    public int remove() throws QueueIsEmptyException{
+    public E remove() throws QueueIsEmptyException{
         if(size == 0)
         {
             throw new QueueIsEmptyException("Queue is empty");
         }
         else {
-            int top = array[0];
+            E top = (E)array[0];
             for (int i = 0; i < size; ++i) {
                 array[i] = array[i + 1];
             }
@@ -53,19 +62,18 @@ public class QueueImpl implements Queue {
     }
 
     @Override
-    public int element() throws QueueIsEmptyException{
+    public E element() throws QueueIsEmptyException{
         if(size == 0){
             throw new QueueIsEmptyException("Queue is empty");
         }
-        return array[0];
+        return (E)array[0];
     }
 
     @Override
-    public boolean offer(int e) {
-        if(size == capacity){
-            return false;
+    public E peek(){
+        if(size == 0) {
+            return null;
         }
-        array[size] = e;
-        return true;
+        return (E)array[0];
     }
 }

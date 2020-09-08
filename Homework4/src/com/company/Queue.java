@@ -1,10 +1,11 @@
 package com.company;
 
-public interface Queue {
-    boolean add(int e) throws QueueIsFullException;
-    int poll();
-    int remove() throws QueueIsEmptyException;
-    int element() throws QueueIsEmptyException;
-    boolean offer(int e);
+public interface Queue<E> {
+    boolean add(E e) throws QueueIsFullException;
+    boolean offer(E e);
+    E poll();
+    E remove() throws QueueIsEmptyException;
+    E element() throws QueueIsEmptyException;
+    E peek();
 }
 
